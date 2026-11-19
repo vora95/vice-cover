@@ -213,10 +213,12 @@ function renderCover(ctx, W, H, state) {
         drawArtPanel(ctx, rect, 'skyline', theme, seed, state.retro);
       }
       applyGrade(ctx, rect, theme, 1.0, state.retro, seed, 0);
-      // Palm silhouette in the hero corner, over the grade.
+      // Palm silhouette in the hero corner, over the grade — in the theme's
+      // own near-black so it stays a silhouette on every theme.
       ctx.save();
       ctx.beginPath(); ctx.rect(rect.x, rect.y, rect.w, rect.h); ctx.clip();
-      drawPalm(ctx, { x: rect.x, y: rect.y, w: rect.w, h: rect.h }, 0.03, 1.02, 0.34, -0.4, 'rgba(18,8,46,0.85)');
+      ctx.globalAlpha = 0.85;
+      drawPalm(ctx, { x: rect.x, y: rect.y, w: rect.w, h: rect.h }, 0.03, 1.02, 0.34, -0.4, theme.nearBlack);
       ctx.restore();
       continue;
     }
