@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover — turn your photos into cover art</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="shot-bg" aria-hidden="true"></div>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">VC</span>
+    <div>
+      <h1>Vice Cover</h1>
+      <p>Turn your photos into sunset cover art</p>
+    </div>
+  </div>
+  <button id="export-btn" class="export">Export PNG</button>
+</header>
+<main class="studio">
+  <section class="controls" aria-label="Editor controls">
+    <div class="card">
+      <h2>Photos</h2>
+      <p class="hint">Add 1–4 photos. The first one is the hero. Drag the cover to reposition it.</p>
+      <input type="file" id="file-input" accept="image/*" multiple hidden>
+      <div class="row">
+        <button id="add-photo" class="btn">Add photo</button>
+        <button id="demo-btn" class="btn ghost">Use demo scene</button>
+      </div>
+      <div id="photo-list"></div>
+      <p id="photo-count" class="hint">0 / 4 photos</p>
+    </div>
+    <div class="card">
+      <h2>Caption</h2>
+      <label class="field">Title
+        <input id="caption" type="text" maxlength="24" value="VICE CITY" autocomplete="off">
+      </label>
+      <label class="field">Sub-caption
+        <input id="subcaption" type="text" maxlength="40" value="WELCOME TO" autocomplete="off">
+      </label>
+    </div>
+    <div class="card">
+      <h2>Look</h2>
+      <label class="field">Theme</label>
+      <div id="theme-row" class="chips"></div>
+      <label class="field">Layout
+        <select id="layout"></select>
+      </label>
+      <label class="field">Export size</label>
+      <div id="size-row" class="chips"></div>
+      <label class="check"><input id="retro" type="checkbox" checked> Retro print (halftone + grain)</label>
+    </div>
+    <p id="status" class="status" role="status">Demo scene loaded.</p>
+  </section>
+  <section class="preview" aria-label="Cover preview">
+    <div id="drop-zone" class="drop-zone">
+      <canvas id="cover" width="1080" height="1350"></canvas>
+      <p class="drop-hint">Drop photos here · drag the cover to pan the hero photo · press E to export</p>
+    </div>
+  </section>
+</main>
+<footer class="foot">Photos never leave your machine — everything renders offline in this tab.</footer>
+<!-- Plain classic scripts in dependency order (no modules) so the app also
+     opens from file://, where browsers block module scripts. -->
+<script src="src/state.js"></script>
+<script src="src/silhouettes.js"></script>
+<script src="src/grade.js"></script>
+<script src="src/render.js"></script>
+<script src="src/photos.js"></script>
+<script src="src/export.js"></script>
+<script src="src/ui.js"></script>
+<script src="src/main.js"></script>
+</body>
+</html>
